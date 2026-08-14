@@ -11,17 +11,17 @@ An end-to-end Computer Vision & AI Engineering solution for automated Personal P
 
 ---
 
-## 🌟 Key Features
+##  Key Features
 
-- 🤖 **AI Object Detection**: Detects 5 target object classes using a fine-tuned YOLO26s model (`Person`, `Helmet`, `No-Helmet`, `Vest`, `No-Vest`).
-- 🧠 **Spatial Logic Engine**: Uses spatial overlap (IoU) and fallback spatial bounding box inference to associate PPE gear items with detected workers.
-- ⚖️ **Safety Compliance & Risk Evaluation**:
-  - 🟢 **COMPLIANT**: Worker equipped with both Helmet AND Vest.
-  - 🔴 **VIOLATION**: Worker missing protective gear or directly flagged with `No-Helmet` / `No-Vest`.
-  - 📊 **Risk Level Rating**: Automatically assesses overall scene risk (`LOW`, `MEDIUM`, `HIGH`).
-- 🎨 **Visual Annotations**: Overlays green 🟢 bounding boxes for compliant workers and red 🔴 boxes detailing missing gear for violators.
-- ⚡ **FastAPI RESTful Service**: Exposes API endpoint for image processing (`/predict`).
-- 🖥️ **Glassmorphism Web Dashboard**: Modern responsive Dark Mode UI featuring drag-and-drop file upload, live confidence threshold slider, real-time KPI summary cards, and a detailed worker compliance breakdown table.
+-  **AI Object Detection**: Detects 5 target object classes using a fine-tuned YOLO26s model (`Person`, `Helmet`, `No-Helmet`, `Vest`, `No-Vest`).
+-  **Spatial Logic Engine**: Uses spatial overlap (IoU) and fallback spatial bounding box inference to associate PPE gear items with detected workers.
+-  **Safety Compliance & Risk Evaluation**:
+  -  **COMPLIANT**: Worker equipped with both Helmet AND Vest.
+  -  **VIOLATION**: Worker missing protective gear or directly flagged with `No-Helmet` / `No-Vest`.
+  -  **Risk Level Rating**: Automatically assesses overall scene risk (`LOW`, `MEDIUM`, `HIGH`).
+-  **Visual Annotations**: Overlays green 🟢 bounding boxes for compliant workers and red 🔴 boxes detailing missing gear for violators.
+-  **FastAPI RESTful Service**: Exposes API endpoint for image processing (`/predict`).
+-  **Glassmorphism Web Dashboard**: Modern responsive Dark Mode UI featuring drag-and-drop file upload, live confidence threshold slider, real-time KPI summary cards, and a detailed worker compliance breakdown table.
 
 ---
 
@@ -107,40 +107,4 @@ Once running, open your browser to:
 - 🖥️ **Web Dashboard**: [http://localhost:8000/app/](http://localhost:8000/app/)
 - 📖 **Swagger API Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
 - 🟢 **Health Check**: [http://localhost:8000/health](http://localhost:8000/health)
-
----
-
-## 📡 RESTful API Endpoints
-
-### 1. `GET /health`
-Returns the status of the server and current UTC timestamp.
-
-### 2. `POST /predict`
-Performs safety compliance analysis on an uploaded image file (`.jpg`, `.png`).
-
-- **Form Data**: `file` (Image upload)
-- **Query Params**: `conf` (Confidence threshold, default: `0.35`)
-- **Response Sample**:
-```json
-{
-  "compliance_status": "VIOLATION",
-  "risk_level": "HIGH",
-  "people_count": 2,
-  "compliant_count": 1,
-  "violation_count": 1,
-  "annotated_image": "data:image/jpeg;base64,...",
-  "persons": [
-    {
-      "person_id": 1,
-      "box": [120.5, 80.0, 350.2, 700.0],
-      "has_helmet": true,
-      "has_vest": false,
-      "is_compliant": false,
-      "detected_items": ["Helmet"],
-      "missing_items": ["Vest"]
-    }
-  ],
-  "timestamp": "2026-08-14T13:18:00+00:00"
-}
-```
 
