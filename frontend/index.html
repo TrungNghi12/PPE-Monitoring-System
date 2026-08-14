@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPE Monitoring System - AI Safety Analytics</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo-group">
+        <div class="logo-icon">🦺</div>
+        <div>
+          <h1 class="logo-title">PPE Monitoring System</h1>
+          <p class="logo-subtitle">AI Safety Inspection & Compliance Analytics Dashboard</p>
+        </div>
+      </div>
+      <div class="status-badge" id="api-status">
+        <span class="pulse-dot"></span>
+        <span id="api-status-text">FastAPI Server Online</span>
+      </div>
+    </header>
+
+    <!-- KPI Summary Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-blue">
+        <div class="kpi-icon">👥</div>
+        <div class="kpi-info">
+          <div class="kpi-value" id="kpi-total">0</div>
+          <div class="kpi-label">Total Workers</div>
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-green">
+        <div class="kpi-icon">🟢</div>
+        <div class="kpi-info">
+          <div class="kpi-value" id="kpi-compliant">0</div>
+          <div class="kpi-label">Compliant Workers</div>
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-red">
+        <div class="kpi-icon">🔴</div>
+        <div class="kpi-info">
+          <div class="kpi-value" id="kpi-violation">0</div>
+          <div class="kpi-label">Violations Detected</div>
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-purple">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-info">
+          <div class="kpi-value" id="kpi-rate">0%</div>
+          <div class="kpi-label">Safety Compliance Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Left Panel: Control & Upload -->
+      <div class="panel-card">
+        <h2 class="panel-title">📤 Upload Image / Video</h2>
+        
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-icon">📷</div>
+          <div class="dropzone-text">Drag and drop file here or click to browse</div>
+          <div class="dropzone-sub">Supports JPG, PNG, MP4, AVI</div>
+          <input type="file" id="file-input" class="file-input" accept="image/*,video/*" />
+        </div>
+
+        <div class="file-info-box" id="file-info" style="display: none;">
+          <span id="file-name">filename.jpg</span>
+          <span id="file-size">0 MB</span>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">
+            <span>Confidence Threshold</span>
+            <span id="conf-val">0.35</span>
+          </label>
+          <input type="range" id="conf-slider" class="slider" min="0.1" max="0.9" step="0.05" value="0.35" />
+        </div>
+
+        <button class="btn-primary" id="btn-predict" disabled>
+          <span id="btn-icon">⚡</span>
+          <span id="btn-text">Run Safety Check (Inference)</span>
+        </button>
+      </div>
+
+      <!-- Right Panel: Visual Results & Table -->
+      <div class="panel-card">
+        <div class="view-header">
+          <h2 class="panel-title">🔍 Analysis Results</h2>
+          <div class="compliance-badge badge-none" id="overall-badge">
+            <span>WAITING INPUT</span>
+          </div>
+        </div>
+
+        <div class="canvas-container" id="canvas-container">
+          <div class="placeholder-box" id="placeholder">
+            <div class="placeholder-icon">🦺</div>
+            <p>Upload an image or video to view object detection and violation evaluation results.</p>
+          </div>
+          <img id="result-img" style="display: none;" alt="Prediction Result" />
+        </div>
+
+        <!-- Detailed Person Table -->
+        <div class="table-container" id="table-container" style="display: none;">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1rem;">Detailed Worker PPE Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Worker ID</th>
+                <th>Safety Helmet (🪖)</th>
+                <th>Safety Vest (🦺)</th>
+                <th>Status</th>
+                <th>Missing Gear</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Dynamic Rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
