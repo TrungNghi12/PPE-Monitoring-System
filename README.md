@@ -7,6 +7,8 @@
 
 An end-to-end Computer Vision & AI Engineering solution for automated Personal Protective Equipment (PPE) compliance monitoring on images, powered by YOLO26s, a custom Spatial Logic Engine, FastAPI backend, and an interactive Glassmorphism Web Dashboard.
 
+![PPE Monitoring System Demo](docs/demo.gif)
+
 ---
 
 ## 🌟 Key Features
